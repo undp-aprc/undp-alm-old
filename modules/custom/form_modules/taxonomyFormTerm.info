@@ -1,0 +1,4 @@
+name = CCA Forms: Taxonomy Form Term
+description = Alter the default taxonomy term form
+package = CCA Modules
+core = 7.x

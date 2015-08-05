@@ -1,0 +1,6 @@
+name = CCA Theme Blocks
+description = Defines blocks that make up common parts of the CCA 2015 Refresh Theme.
+package = CCA Modules
+core = 7.x
+
+dependencies[] = leaflet

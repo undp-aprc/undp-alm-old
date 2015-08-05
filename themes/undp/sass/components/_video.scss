@@ -1,0 +1,35 @@
+$aspect-ratio: 315 / 420;
+
+.field-name-field-youtube-url {
+  iframe {
+    @include breakpoint($col-8) {
+      width: col-width(4);
+      height: col-width(4) * $aspect-ratio;
+    }
+
+    @include breakpoint($col-10) {
+      width: col-width(5);
+      height: col-width(5) * $aspect-ratio;
+    }
+  }
+}
+
+.node-video.node-teaser {
+  @include clearfix;
+
+  .field-name-field-youtube-url,
+  iframe {
+    @include breakpoint($col-8) {
+      width: col-width(3);
+      height: col-width(3) * $aspect-ratio;
+      float: left;
+    }
+  }
+
+  .field-name-field-youtube-url {
+    @include breakpoint($col-8) {
+      float: left;
+      margin-right: $w-gutter;
+    }
+  }
+}

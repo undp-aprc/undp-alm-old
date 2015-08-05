@@ -1,0 +1,39 @@
+.node-project.view-mode-image_teaser {
+  @include clearfix;
+  background-color: $blue-white;
+
+  .node-title {
+    @include adjust-font-size-to($fs-xl);
+    font-weight: bold;
+  }
+
+  > .field-name-title,
+  > .field-name-body {
+    padding: 0 $w-gutter-half;
+  }
+}
+
+.node-teaser.node-resource {
+  @include leading-border(1px, 2);
+  padding-bottom: rhythm(2);
+  border-color: $gray-white;
+
+  h2 {
+    @include adjust-font-size-to($fs-xl, 2.5);
+    margin: 0;
+  }
+
+  .field-name-post-date {
+    @include adjust-font-size-to($fs-xs);
+    margin: rhythm(.5, $fs-xs) 0 rhythm(1, $fs-xs);
+  }
+
+  .field-name-field-description {
+    @include adjust-font-size-to($fs-s);
+  }
+
+  .field-name-field-thumbnail {
+    float: left;
+    margin-right: $w-gutter;
+  }
+}

@@ -1,0 +1,5 @@
+name = UNDP Taxonomies
+description = Add the taxonomy terms for UNDP
+package = ADG
+core = 7.x
+

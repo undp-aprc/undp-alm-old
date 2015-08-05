@@ -1,0 +1,152 @@
+//
+// @file
+// Major layout styles.
+
+// Gutters
+.gutters {
+  padding: 0 $w-gutter;
+}
+
+.gutters-half {
+  padding: 0 $w-gutter / 2;
+}
+
+// Vertical spacing
+.l-space-leading {
+  margin-top: rhythm(3);
+}
+
+.l-space-trailing {
+  margin-bottom: rhythm(3);
+}
+
+body.html {
+  background-color: $blue-darker;
+}
+
+#main {
+  background-color: $white;
+  padding: rhythm(4) 0;
+}
+
+// Set the page width.
+.page-width {
+  margin: 0 auto;
+  padding: 0 ($w-gutter / 2);
+
+  @include breakpoint($col-7) { width: col-width(7); }
+  @include breakpoint($col-8) { width: col-width(8); }
+  @include breakpoint($col-9) { width: col-width(9); }
+  @include breakpoint($col-10) { width: col-width(10); }
+  @include breakpoint($col-11) { width: col-width(11); }
+  @include breakpoint($col-12) { width: col-width(12); }
+}
+
+// No Sidebars
+// ----------------------------------------------------------------------------
+
+.no-sidebars.node-type-page.not-front {
+  #main-content {
+    @include breakpoint($col-10) {
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+  }
+}
+
+// One Sidebar
+// ----------------------------------------------------------------------------
+
+.sidebar-first,
+.two-sidebars {
+  #main-content {
+    @include breakpoint($col-7) {
+      float: right;
+      width: col-width(5);
+    }
+
+    @include breakpoint($col-8) { width: col-width(6); }
+    @include breakpoint($col-9) { width: col-width(7); }
+    @include breakpoint($col-10) { width: col-width(8); }
+    @include breakpoint($col-11) { width: col-width(9); }
+    @include breakpoint($col-12) { width: col-width(10); }
+  }
+
+  #sidebar-first {
+    @include breakpoint($col-7) {
+      float: left;
+      width: col-width(2);
+    }
+  }
+}
+
+// Sidebar second only
+.sidebar-second {
+  #content {
+    @include breakpoint($col-8) {
+      float: left;
+      width: col-width(5);
+    }
+
+    @include breakpoint($col-10) { width: col-width(6); }
+    @include breakpoint($col-11) { width: col-width(7); }
+    @include breakpoint($col-12) { width: col-width(8); }
+  }
+
+  #sidebar-second {
+    @include breakpoint($col-8) {
+      float: right;
+      width: col-width(3);
+      padding-left: $w-gutter;
+    }
+
+    @include breakpoint($col-9) { width: col-width(4); }
+  }
+}
+
+// Two Sidebars
+// ----------------------------------------------------------------------------
+
+.two-sidebars {
+  #content {
+    @include breakpoint($col-10) {
+      float: left;
+      width: col-width(5);
+    }
+
+    @include breakpoint($col-12) { width: col-width(6); }
+  }
+
+  #sidebar-second {
+    @include breakpoint($col-10) {
+      float: left;
+      width: col-width(3);
+      padding-left: $w-gutter;
+    }
+
+    @include breakpoint($col-11) { width: col-width(4); }
+  }
+}
+
+// Display Suite
+//--------------
+
+.ds-2col {
+  > .group-left,
+  > .group-right {
+    width: 100%;
+    float: none;
+
+    @include breakpoint($col-8) {
+      width: col-width(4);
+      float: left;
+    }
+
+    @include breakpoint($col-10) { width: col-width(5); }
+    @include breakpoint($col-12) { width: col-width(6); }
+  }
+
+  > .group-left {
+    margin-right: $w-gutter;
+  }
+}

@@ -1,0 +1,204 @@
+// @file
+// Header styles
+// ----------------------------------------------------------------------------
+
+#header {
+  @include background-image(
+    url('../images/header-bg.png'),
+    linear-gradient(#003773, #043163)
+  );
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-color: $blue-darker;
+  color: $blue-white;
+}
+
+// BRANDING
+// ----------------------------------------------------------------------------
+
+#branding {
+  margin: 0;
+  position: relative;
+  padding-top: 20px;
+}
+
+#logo {
+  float: left;
+  max-width: calc-percent(58, 368);
+  margin: 0 calc-percent(6, 368);
+
+  @include breakpoint($col-5) {
+    margin: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+#site-name {
+  @include hide-text;
+  background: transparent url('../images/alm-logo.png') 0 0 no-repeat;
+  display: block;
+  height: 52px;
+  margin-left: 0 calc-percent(60, 368);
+  width: 260px;
+
+  @include breakpoint($col-5) {
+    margin-left: 108px;
+  }
+
+  @include breakpoint($col-7) {
+    float: left;
+  }
+}
+
+// UTILITY
+// ----------------------------------------------------------------------------
+
+#utility {
+  @include breakpoint($col-5 $col-7) {
+    margin-left: 108px;
+    .block {
+      display: inline-block;
+    }
+  }
+
+  @include breakpoint($col-7) {
+    float: right;
+  }
+
+  @include breakpoint($col-9) {
+    .block {
+      display: inline-block;
+    }
+  }
+
+
+}
+
+.menu-block-2 {
+  margin-right: $w-gutter-half;
+
+ .nav-link {
+   @include adjust-font-size-to($fs-xs);
+   @include gutters-half;
+   @include link-colors($blue-light, mix($blue-light, $blue-white, 50%));
+ }
+}
+
+// SEARCH
+// ----------------------------------------------------------------------------
+
+#block-search-form {
+  right: 0;
+  position: relative;
+
+  #edit-search-block-form--2 {
+    @include adjust-font-size-to($fs-xs);
+    @include border-radius(10px);
+    color: $gray;
+    font-family: $tertiary-typeface;
+    border: none;
+    padding: 5px 24px 5px 10px;
+    margin-right: 20px;
+    width: 140px;
+    height: 12px;
+    float: none;
+  }
+
+  input[value="Search"] {
+    @extend .icon;
+    @include icon-sprite(search);
+    @include box-shadow(none);
+    height: 18px;
+    width: 18px;
+    padding: 0;
+    border: none;
+    margin-right: 0;
+    position: absolute;
+    right: 26px;
+    top: -3px;
+    text-indent: 24px
+  }
+
+  #edit-actions,
+  #edit-actions--2 {
+    @include inline-block;
+    position: relative;
+  }
+}
+
+
+
+// MAIN MENU
+// ----------------------------------------------------------------------------
+
+#navigation {
+  clear: both;
+
+  @include breakpoint($col-5) {
+    margin-left: 108px;
+  }
+}
+
+.menu-block-1 {
+  padding: rhythm(1) 0;
+
+  .nav {
+    display: none;
+  }
+
+  @include breakpoint($col-9) {
+    padding-bottom: 0;
+
+    #navigation-dropdown {
+      display: none;
+      margin-bottom: rhythm(1);
+    }
+
+    .nav {
+      display: block;
+      margin-bottom: -1px;
+    }
+
+    .nav-link {
+      @include adjust-font-size-to($fs-m);
+      @include link-colors($blue-light, mix($blue-light, $blue-white, 50%));
+      @include leading-border(1px, .33, $fs-m);
+      @include gutters-half;
+      border-color: mix($blue-light, $blue-dark, 30%);
+      font-weight: bold;
+      padding-bottom: rhythm(.66, $fs-m);
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:hover {
+        text-decoration: none;
+        border-color: mix($blue-light, $blue-white, 50%);
+      }
+
+      &.active,
+      &.active-trail {
+        @include leading-border(2px, .33, $fs-m);
+        background-color: $white;
+        color: $gray-dark;
+        padding-left: $w-gutter-half;
+        padding-right: $w-gutter-half;
+      }
+    }
+  }
+
+  @include breakpoint($col-11) {
+    .nav-link {
+      @include adjust-font-size-to($fs-xl);
+      @include leading-border(1px, .33, $fs-xl);
+      padding-bottom: rhythm(.66, $fs-xl);
+
+      &.active {
+        @include leading-border(2px, .33, $fs-xl);
+      }
+    }
+  }
+}

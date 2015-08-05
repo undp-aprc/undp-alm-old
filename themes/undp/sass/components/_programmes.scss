@@ -1,0 +1,66 @@
+.view-signature-programmes,
+.view-list-of-sub-programmes {
+  h3,
+  h4 {
+    margin-top: 0;
+  }
+
+  .views-row {
+    @include clearfix;
+  }
+
+  .term-title {
+    @include leading-border(1px, 2);
+    @include adjust-font-size-to($fs-xl);
+    border-color: $gray-light;
+
+  }
+
+  .term-image {
+    float: left;
+    margin-right: $w-gutter;
+    margin-bottom: rhythm(2);
+    @include breakpoint($col-10) { max-width: col-width(2); }
+    @include breakpoint($col-11) { max-width: col-width(3); }
+  }
+
+  .description {
+    @include breakpoint($col-10) {
+      float: left;
+      width: col-width(5);
+      margin-right: $w-gutter;
+    }
+    @include breakpoint($col-12) { width: col-width(6); }
+  }
+
+  .projects {
+    @include box-sizing(border-box);
+    clear: left;
+    padding: rhythm(1) $w-gutter-half;
+    margin-top: rhythm(2);
+    background-color: $blue-white;
+
+    @include breakpoint($col-10) {
+      clear: none;
+      float: right;
+      width: col-width(3);
+      margin-top: 0;
+    }
+  }
+}
+
+.view-id-sub_programmes_child_ {
+  .views-row {
+    margin-bottom: rhythm(1);
+  }
+}
+
+.taxonomy-term {
+  @include clearfix;
+
+  .field-name-field-programme-preview-image {
+    float: left;
+    margin-right: $w-gutter;
+    margin-bottom: rhythm(2);
+  }
+}

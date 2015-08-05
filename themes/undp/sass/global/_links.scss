@@ -1,0 +1,24 @@
+.link-light-blue {
+  @include link-colors($blue-light, $blue-dark);
+}
+
+.more-link,
+.node-readmore {
+  @include adjust-font-size-to($fs-xxxs);
+  text-align: left;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+a.more-link,
+.more-link > a {
+  &:after {
+    @include icon-sprite(arrow-more);
+    @include inline-block;
+    content: "";
+    height: 18px;
+    width: 18px;
+    position: relative;
+    top: -1px;
+  }
+}

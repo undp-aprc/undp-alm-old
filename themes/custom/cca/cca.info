@@ -1,0 +1,33 @@
+;-------------- B A S I C   S E T T I N G S -------------
+name = UNDP CCA Theme
+description = A custom theme the UNDP CCA 2015 refresh
+core = 7.x
+
+;-------------- F E A T U R E S -------------
+
+;-------------- R E G I O N S -------------
+
+regions[page_top]               = Page Top
+regions[page_bottom]            = Page Bottom
+
+regions[header]                 = Header
+regions[menu_1]                 = Menu #1
+regions[menu_2]                 = Menu #2
+regions[menu_3]                 = Menu #3 
+
+regions[help]               = Help
+regions[highlighted]        = Highlighted
+
+regions[above_content]      = Above Content
+regions[content]            = Content
+regions[sidebar_first]      = Sidebar First
+regions[sidebar_second]     = Sidebar Second
+regions[below_content]      = Below Content
+
+regions[footer_1]             = Footer #1
+regions[footer_2]             = Footer #2
+regions[footer_3]             = Footer #3
+regions[admin_footer]       = Admin Footer
+
+;-------------- C S S -------------
+stylesheets[all][] = css/main.css

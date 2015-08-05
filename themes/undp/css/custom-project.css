@@ -1,0 +1,48 @@
+
+
+.page-projects-naps-ldcs #main .page-width,
+.page-node-1714 #main .page-width {
+	background-color:#fff;
+}
+
+.page-projects-naps-ldcs #sidebar-first,
+.page-node-1714 #sidebar-first {
+ 	border-right:1px dotted #000;
+}
+
+.page-projects-naps-ldcs #sidebar-second,
+.page-node-1714 #sidebar-second {
+	float:none;
+	width:100%;
+}
+
+.page-projects-naps-ldcs #content,
+.page-node-1714 #content {
+	width:100%;
+}
+
+.page-projects-naps-ldcs .view-partners-block .views-row,
+.page-node-1714 .view-partners-block .views-row {
+	float:left;
+	margin-right:3em;
+	height:100px;
+	border:none !important;
+}
+
+/* Hide unwanted detail fields on NAP homepage */
+.page-node-1714 .field-name-field-location,
+.page-node-1714 .field-name-field-level-of-intervention,
+.page-node-1714 .field-name-field-key-collaborators,
+.page-node-1714 .field-name-field-thematic-area,
+.page-node-1714 .field-name-field-partners,
+.page-node-1714 .field-name-field-beneficiaries,
+.page-node-1714 .field-name-field-funding-source,
+.page-node-1714 .field-name-field-financing-amount,
+.page-node-1714 .field-name-field-project-status
+ {
+	display:none;
+}
+
+.page-projects .view-project-videos .group-right {
+	width:100%;
+}

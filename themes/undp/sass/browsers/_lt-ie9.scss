@@ -1,0 +1,12 @@
+// Fix search icon position;
+#edit-actions,
+#edit-actions--2 {
+  input[value="Search"] {
+    top: -4px;
+  }
+}
+
+// Fix missing floated images
+img {
+  width: auto;
+}

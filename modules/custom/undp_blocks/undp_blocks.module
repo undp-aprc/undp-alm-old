@@ -1,0 +1,51 @@
+<?php
+/*
+ * This module uses the custom_blocks_base module to easily create and manage blocks.
+ * 
+ * To view the blocks code, see undp_blocks.blocks.inc
+ */
+
+/**
+ * Implements hook_block_info()
+ */
+function undp_blocks_block_info() {
+	$block_manager = _undp_blocks_block_manager();
+	return $block_manager->info();
+}
+
+/**
+ * Implements hook_block_configure
+ */
+function undp_blocks_block_configure($delta = '') {
+	$block_manager = _undp_blocks_block_manager();
+	return $block_manager->configure($delta);
+}
+
+/**
+ * Implements hook_block_save
+ */
+function undp_blocks_block_save($delta = '', $edit = array()) {
+	$block_manager = _undp_blocks_block_manager();
+	return $block_manager->save($delta, $edit);
+}
+
+/**
+ * Implements hook_block_view()
+ */
+function undp_blocks_block_view($delta = '') {
+	$block_manager = _undp_blocks_block_manager();
+	return $block_manager->view($delta);
+}
+
+/**
+ * Create the CustomBlocksManager for use with this module
+ */
+function _undp_blocks_block_manager() {
+	module_load_include('module', 'custom_blocks_base');
+	module_load_include('inc', 'undp_blocks', 'undp_blocks.blocks');
+	
+	if (!isset($GLOBALS['undp_blocks_manager'])) {
+		$GLOBALS['undp_blocks_manager'] = new CustomBlocksManager('UndpBlocks');
+	}
+	return $GLOBALS['undp_blocks_manager'];
+}

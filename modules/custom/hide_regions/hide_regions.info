@@ -1,0 +1,6 @@
+name = Hide regions
+description = A simple module to hide regions if site is loaded in an iFrame
+package = User Interface
+core = 7.x
+scripts[] = hide_regions.js
+stylesheets[all][] = hide_regions.css

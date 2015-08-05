@@ -1,0 +1,63 @@
+.projects ul {
+	list-style:none;
+	padding-left:0px;
+}
+
+.projects li {
+	margin-bottom:0.64286em;
+}
+
+/* Styling for custom view that overrides the core taxonony listing page */
+.project-listing-image-teaser-simple-wrapper {
+	background-color:#F2FAFF;
+	margin-bottom:10px;
+	padding:10px;
+}
+
+.project-listing-image-teaser-simple-wrapper .photo-container.float-left {
+	float:left;
+	margin-right:10px;
+}
+
+.project-listing-image-teaser-simple-wrapper h3 {
+	margin-top:0px;
+}
+
+.term-listing-heading {
+	margin-bottom:10px;
+}
+
+.view-list-of-sub-programmes .description {
+	width:400px;
+}
+
+.page-projects .view-mode-links li {
+	margin-bottom:10px;
+}
+
+.page-projects .ds-2col.view-mode-country_initiatives_teaser {
+	margin-bottom:1em;
+	padding-bottom:1em;
+	border-bottom:#ccc solid 1px;
+}
+
+.page-projects .ds-2col.view-mode-country_initiatives_teaser .group-right h2 {
+	margin-top:0px;
+	font-size:1.2em;
+}
+
+.page-projects .ds-2col.view-mode-country_initiatives_teaser .group-left,
+.page-projects .ds-2col.view-mode-country_initiatives_teaser .group-right,  {
+	float:left !important;
+}
+
+.page-projects .ds-2col.view-mode-country_initiatives_teaser .group-left {
+	width:10% !important;
+}
+
+.page-projects .ds-2col.view-mode-country_initiatives_teaser .group-right {
+	width:85% !important;
+}
+
+
+

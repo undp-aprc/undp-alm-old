@@ -1,0 +1,86 @@
+
+//  Global
+
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  @include box-shadow(0 0 5px $gray);
+}
+
+.form-item {
+  margin: 0 0 1em 0;
+}
+
+//  Labels
+
+label,
+fieldset-legend {
+  @include adjust-font-size-to(12px, 1);
+  margin-bottom: rhythm(1, 12px);
+  color: $blue-light;
+  font-weight: 600;
+}
+
+.form-required {
+  color: $red;
+  font-weight: bold;
+}
+
+//  Form Fields
+
+textarea,
+select,
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"] {
+  @include border-radius(3px);
+  background-color: $white;
+  border-color: $gray-light;
+  border-style: solid;
+  border-width: 1px;
+  color: $gray-darker;
+  max-width: 100%;
+  &:focus {
+    border-color: $gray;
+  }
+}
+
+.node-webform {
+  @include breakpoint($col-7) {
+    label {
+      width: 16%;
+      float: left;
+      text-align: right;
+      margin-right: $w-gutter;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    .form-textarea-wrapper {
+      float: left;
+      @inlude inline-block;
+      width: 60%;
+    }
+
+    .webform-component {
+      @include clearfix;
+      padding-top: rhythm(1);
+    }
+
+    .webform-client-form #edit-actions {
+      margin-left: 16%;
+      padding-left: $w-gutter;
+    }
+  }
+}

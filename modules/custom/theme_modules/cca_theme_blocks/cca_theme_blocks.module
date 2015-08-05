@@ -1,0 +1,403 @@
+<?php
+function cca_theme_blocks_block_info() {
+    $items['header'] = array(
+        'info' => t('CCA Refresh: Header Block'),
+        'cache' => DRUPAL_CACHE_GLOBAL,
+        'region' => 'header',
+        'visibility' => BLOCK_VISIBILITY_NOTLISTED
+    );
+    $items['footer'] = array(
+        'info' => t('CCA Refresh: Footer Block'),
+        'cache' => DRUPAL_CACHE_GLOBAL,
+        'region' => 'footer',
+        'visibility' => BLOCK_VISIBILITY_NOTLISTED
+    );
+    $items['signature_programs'] = array(
+        'info' => t('CCA Refresh: Signature Programs Menu Item'),
+        'cache' => DRUPAL_CACHE_GLOBAL,
+        'visibility' => BLOCK_VISIBILITY_NOTLISTED
+    );
+    $items['resources_menu'] = array(
+        'info' => t('CCA Refresh: Resources Menu Item'),
+        'cache' => DRUPAL_CACHE_GLOBAL,
+        'visibility' => BLOCK_VISIBILITY_NOTLISTED
+    );
+    $items['media_menu'] = array(
+        'info' => t('CCA Refresh: Media Menu Item'),
+        'cache' => DRUPAL_CACHE_GLOBAL,
+        'visibility' => BLOCK_VISIBILITY_NOTLISTED
+    );
+    $items['what_we_do'] = array(
+        'info' => t('CCA Refresh: What We Do Block'),
+        'cache' => DRUPAL_CACHE_GLOBAL,
+        'visibility' => BLOCK_VISIBILITY_LISTED
+    );
+    $items['where_we_work'] = array(
+        'info' => t('CCA Refresh: Where We Work'),
+        'cache' => DRUPAL_CACHE_GLOBAL,
+        'visibility' => BLOCK_VISIBILITY_LISTED
+    );
+    $items['how_we_engage'] = array(
+        'info' => t('CCA Refresh: How we engage'),
+        'cache' => DRUPAL_CACHE_GLOBAL,
+        'visibility' => BLOCK_VISIBILITY_LISTED
+    );
+    $items['video_slides'] = array(
+        'info' => t('CCA Refresh: Video Slides'),
+        'cache' => DRUPAL_CACHE_GLOBAL,
+        'visibility' => BLOCK_VISIBILITY_LISTED
+    );
+    return $items;
+}
+
+/* hook_block_view() */
+function cca_theme_blocks_block_view($delta) {
+    $module_path = drupal_get_path('module','cca_theme_blocks');
+    $block = array();
+    switch($delta) {
+        case 'header':
+            $block['content'] = array(
+                'subject' => t('Header and navigation Menu'),
+                '#theme' => 'cca_header_block',
+                'variables' => array(
+                    'theme_path' => drupal_get_path('theme','cca'),
+                ),
+    			'#attached' => array(
+    				'js' => array(
+    					$module_path.'/js/vendor/bootstrap/dropdown.js' => array(
+    						'type' => 'file',
+    					),
+                        $module_path.'/js/vendor/bootstrap/collapse.js' => array(
+                            'type' => 'file',
+                        ),
+    				),
+                    'css' => array(
+                        $module_path.'/css/yamm.css' => array(
+                            'type' => 'file',
+                        ),
+                    ),
+    			),
+            );
+            break;
+        case 'footer':
+            $block['content'] = array(
+                'subject' => t('Footer Menu Block'),
+                '#theme' => 'cca_footer_block',  
+            );
+        break;
+        case 'signature_programs':
+            $block['content'] = array(
+                'subject' => t('Signature Programs'),
+                '#theme' => 'cca_signature_programs_block',
+                '#items' => fetch_items(),
+            );
+        break;
+        case 'resources_menu':
+            $block['content'] = array(
+                'subject' => t('Resource Menu'),
+                '#theme' => 'cca_resource_menu_block',
+                'variables' => array(
+                    'theme_path' => drupal_get_path('theme','cca'),
+                ),
+            );
+            break;
+        case 'media_menu':
+            $block['content'] = array(
+                'subject' => t('Media Menu'),
+                '#theme' => 'cca_media_menu_block',
+                'variables' => array(
+                    'theme_path' => drupal_get_path('theme','cca'),
+                ),
+            );
+            break;
+        case 'what_we_do':
+            $block['content'] = array(
+                'subject' => t('What We Do'),
+                '#theme' => 'cca_program_slide',
+                '#theme_wrappers' => array(
+                    'cca_slideshow_container',
+                    'cca_section_container',
+                ),
+                '#dom_variables' => array(
+                    'section-container-id' => 'section-what-we-do',
+                    'section-container-heading' => t('What We Do'),
+                 ),
+                '#items' => fetch_items('signature_programmes','4-3_landscape_large_scaled_cropped_800x600'),
+        		'#attached' => array(
+        			'js' => array(
+        				$module_path.'/js/plugins/jquery.slides.min.js' => array(
+        					'type' => 'file',
+        				),
+        				$module_path.'/js/attach.js' => array(
+        					'type' => 'file',
+        				),
+        			),
+        		),
+            );
+            break;
+            case 'where_we_work':
+                $block['content'] = array(
+                    'subject' => t('Where We Work'),
+                    '#theme' => 'cca_project_location_map',
+                    '#theme_wrappers' => array(
+                        'cca_section_container',
+                    ),
+                    '#dom_variables' => array(
+                        'section-container-id' => 'section-where-we-work',
+                        'section-container-heading' => t('Where We Work'),
+                        'more-content' => '/project-maps-explorer',
+                    ),
+            		'#attached' => array(
+                        'css' => array(
+                            'http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css' => array(
+                                'type' => 'external',
+                            ),
+                        ),
+            			'js' => array(
+            				$module_path.'/data/map-data.js' => array(
+            					'type' => 'file',
+            				),
+            				'/sites/all/libraries/leaflet/leaflet.js' => array(
+            					'type' => 'file',
+            				),
+            				$module_path.'/js/nav-map.js' => array(
+            					'type' => 'file',
+            				),
+            			),
+            		),
+                );
+            break;
+        case 'how_we_engage':
+            $block['content'] = array(
+                'subject' => t('How We Engage'),
+                '#theme' => 'cca_how_we_engage',
+                '#theme_wrappers' => array(
+                    'cca_section_container',
+                ),
+                '#dom_variables' => array(
+                    'section-container-id' => 'section-how-we-engage',
+                    'section-container-heading' => t('How We Engage'),
+                    'more-content' => '/news',
+                ),
+            );
+        break;
+        case 'video_slides':
+            $block['content'] = array(
+                'subject' => t('Videos'),
+                '#theme' => 'cca_video_slide',
+                '#theme_wrappers' => array(
+                    'cca_slideshow_container',
+                    'cca_section_container',
+                ),
+                '#dom_variables' => array(
+                    'section-container-id' => 'section-videos',
+                    'section-container-heading' => t('Videos'),
+                    'more-content' => '/videos',
+                ),
+                '#attached' => array(
+                    'js' => array(
+                        $module_path.'/js/plugins/jquery.slides.min.js' => array(
+                            'type' => 'file',
+                        ),
+                        $module_path.'/js/attach.js' => array(
+                            'type' => 'file',
+                        ),
+                    ),
+                ),
+            );
+            break;
+    }
+    return $block;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function cca_theme_blocks_theme($existing, $type, $theme, $path) {
+  return array(
+        'cca_header_block' => array(
+            'path' => $path.'/templates/',
+            'template' => 'cca-header-block',
+            'render element' => 'elements',
+        ),
+        'cca_secondary_menu' => array(
+            'path' => $path.'/templates/',
+            'template' => 'cca-secondary-menu',
+            'render element' => 'elements',
+        ),
+        'cca_footer_block' => array(
+            'path' => $path.'/templates/',
+            'template' => 'cca-footer-block',
+            'render element' => 'elements',
+        ),
+        'cca_signature_programs_block' => array (
+            'path' => $path.'/templates/',
+            'template' => 'cca-signature-programs',
+            'render element' => 'elements',
+        ),
+        'cca_resource_menu_block' => array (
+            'path' => $path.'/templates/',
+            'template' => 'cca-resource-menu',
+            'render element' => 'elements',
+        ),
+        'cca_media_menu_block' => array (
+            'path' => $path.'/templates/',
+            'template' => 'cca-media-menu',
+            'render element' => 'elements',
+        ),
+        'cca_what_we_do_block' => array(
+            'path' => $path.'/templates/',
+            'template' => 'cca-what-we-do',
+            'render element' => 'elements',
+        ),
+        'cca_section_container' => array(
+            'path' => $path.'/templates/',
+            'template' => 'cca-section-container',
+            'render element' => 'elements',
+        ),
+        // Slideshow themes and theme wrappers
+        'cca_slideshow_container' => array(
+            'path' => $path.'/templates/',
+            'template' => 'cca-slideshow-container',
+            'render element' => 'elements',
+        ),
+        'cca_program_slide' => array(
+            'path' => $path.'/templates/',
+            'template' => 'cca-program-slide',
+            'render element' => 'elements',
+        ),
+        // Project location map theme
+        'cca_project_location_map' => array(
+            'path' => $path.'/templates/',
+            'template' => 'cca-project-location-map',
+            'render element' => 'elements',
+        ),
+        'simple_bullet_item' => array(
+            'render element' => 'elements',
+        ),
+        'download_button' => array(
+            'render element' => 'elements',
+        ),
+        'cca_how_we_engage' => array(
+          'path' => $path.'/templates/',
+          'template' => 'cca-how-we-engage',
+          'render element' => 'elements'
+        ),
+        'cca_video_slide' => array(
+          'path' => $path.'/templates/',
+          'template' => 'cca-video-slide',
+          'render element' => 'elements'
+        ),
+        'date_dynamic_icon' => array(
+            'path' => $path.'/templates/',
+            'template' => 'date-dynamic-icon',
+            'render element' => 'elements'
+        ),
+  );
+}
+
+/* Provides a super simple <li> wrapper because need to wrap the search form as part of the menu after it's rendered */
+function theme_simple_bullet_item($variables) {
+    $output = "<li>";
+    $output .= $variables['elements']['#children'];
+    $output .= "</li>";
+    return $output;
+}
+
+function theme_download_button($variables) {
+    $url = file_create_url($variables['elements']['#items'][0]['uri']);
+    return "<a href='$url' class='btn btn-primary'>Download</a>";
+}
+
+function cca_theme_blocks_preprocess_cca_secondary_menu(&$variables) {
+    global $user;
+    $menu = menu_tree('menu-secondary-menu');
+    $items = array();
+    foreach ($menu as $key=>$item) {
+        if (is_array($item) && is_int($key)) {
+            $item['#below'] = []; // We don't want any children displayed so initialise #below array to empty array.
+            if ($user->uid !=0) {
+                if ($item['#title'] != 'Login') {
+                    $items[] = $item;
+                }
+            } else {
+                if ($item['#title'] != 'Logout') {
+                    $items[] = $item;
+                }
+            }
+        }
+    }
+
+    $variables['elements']['search']['#theme_wrappers'][] = 'simple_bullet_item';
+    $items[] = $variables['elements']['search'];
+    unset($variables['elements']['search']);
+    $variables['elements']['items'] = $items;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function cca_theme_blocks_preprocess_cca_how_we_engage(&$variables)
+{
+    $nodes = array();
+    $items = entityqueue_subqueue_load('how_we_engage')->eq_node['und'];
+    $i = 0;
+    foreach ($items as $item) {
+        $view_mode = $i == 0 ? 'news_photo_teaser_featured' : 'news_photo_teaser';
+        $node = node_load($item['target_id']);
+        $nodes[] = node_view($node, $view_mode);
+        $i++;
+    }
+    $variables['nodes'] = $nodes;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function cca_theme_blocks_preprocess_cca_video_slide(&$variables)
+{
+    $nodes = array();
+    $items = entityqueue_subqueue_load('videos_homepage')->eq_node['und'];
+
+    foreach ($items as $item) {
+            $node = node_load($item['target_id']);
+            $nodes[] = node_view($node, 'video_preview_no_titles');
+    }
+    $variables['nodes'] = $nodes;
+}
+/* Helper functions */
+
+function fetch_items($bundle = 'signature_programmes', $image_style = '4-3_landscape_medium_scaled_cropped_400x300') {
+    $language = 'und';
+    $items = array();
+    $vocabs = taxonomy_get_vocabularies();
+    foreach($vocabs as $delta=>$index) {
+        if ($vocabs[$delta]->machine_name == $bundle) {
+        	$tree = taxonomy_get_tree($vocabs[$delta]->vid, 0, 1, TRUE);
+            foreach($tree as $delta=>$index) {
+                $items[] = array(
+                    'tid' => $tree[$delta]->tid,
+                    'img' => fetch_img($tree[$delta]->field_program_preview_img[$language][0]['fid'], $image_style),
+                    'title' => $tree[$delta]->name,
+                    'description_summary' => $tree[$delta]->field_summary[$language][0]['safe_value'],
+                );
+            }
+        }
+    }
+    return $items;
+}
+
+function fetch_img($fid, $style_name, $theme = 'image_style') {
+    if ($fid) {
+    	$file = file_load($fid);
+    	return array(
+    		'#theme' => $theme,
+    		'#style_name' => $style_name,
+    		'#path' => $file->uri,
+    	); 
+    } else {
+        drupal_set_message('Valid fid not passed', 'error');
+    }
+}
+
+?>

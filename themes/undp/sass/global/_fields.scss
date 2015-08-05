@@ -1,0 +1,125 @@
+.collapse {
+  margin: 0;
+}
+
+.field-label-above {
+  padding: rhythm(1) 0;
+}
+
+.field-label {
+  @include adjust-font-size-to($fs-s);
+  color: $blue-light;
+  font-weight: bold;
+}
+
+.node-title-featured {
+  @include adjust-font-size-to($fs-xl);
+  font-weight: bold;
+}
+
+.field-label-inline {
+  > .field-label {
+    display: inline;
+    color: $gray;
+  }
+
+  > .field-items {
+    @include inline-block;
+  }
+}
+
+
+// COUNTRY
+// -------
+
+.country-header {
+  @include trailing-border(1px, 1);
+  margin-bottom: rhythm(2);
+  border-color: $gray-lightest;
+
+  > .page-title,
+  > .country-region {
+    display: block;
+  }
+
+  > .page-title {
+    @include adjust-font-size-to($fs-xxxl);
+    margin-bottom: 0;
+  }
+
+  > .country-flag {
+    float: left;
+    margin: 6px $w-gutter 0 0;
+
+  }
+}
+
+.country {
+  // Flag specific styles have been removed.
+  // clear: left;
+  // min-height: 24px;
+  // padding-left: 36px;
+  margin-bottom: rhythm(.5);
+
+  > .country-flag {
+    // float: left;
+    // position: absolute;
+    // margin-left: -36px;
+    // margin-top: -2px;
+  }
+
+  > .country-name {
+    // float: left;
+    @include adjust-leading-to(1.5);
+  }
+}
+
+// VIDEOS
+// ------
+
+.video-thumbnail {
+  position: relative;
+
+  &:after {
+    @include icon-sprite(play-button);
+    content: "";
+    display: block;
+    position: absolute;
+    height: 45px;
+    width: 45px;
+    top: 50%;
+    left: 50%;
+    margin-top: -26px;
+    margin-left: -26px;
+    cursor: pointer;
+  }
+}
+
+// FIELD COLLECTIONS
+// -----------------
+
+.entity-field-collection-item {
+  @include leading-border(1px, 2);
+  padding-bottom: rhythm(2);
+  border-color: $gray-white;
+}
+
+// RESOURCES
+// ---------
+
+.field-name-post-date {
+  margin: rhythm(-1) 0 rhythm(3);
+}
+
+.node-resource {
+  .field-name-field-thumbnail {
+    float: left;
+    margin-right: $w-gutter;
+  }
+
+  .field-name-field-external-link,
+  .field-name-field-resource-type,
+  .field-name-field-resource-project {
+    clear: left;
+  }
+}

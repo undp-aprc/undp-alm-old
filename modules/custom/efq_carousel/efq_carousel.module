@@ -1,0 +1,119 @@
+<?php
+
+function efq_carousel_theme() {
+	$items = array();
+	
+	$items['efq_carousel'] = array(
+		'arguments' => array(
+			'elements' => NULL,
+			'render element' => 'element',
+		),
+	);
+	
+	return $items;
+}
+
+function efq_carousel_block_info() {
+	$blocks['efq_carousel'] = array(
+		'info' => t('Entity Field Query Carousel'),
+		'cache' => DRUPAL_CACHE_GLOBAL,
+		'visibility' => BLOCK_VISIBILITY_LISTED,
+	);
+	return $blocks;
+}
+
+function efq_carousel_block_view($delta = '') {
+	$block = array();
+	
+	if ($items = fetch_carousel_items()) {
+		$block['content'] = array(
+			'#markup' => theme('efq_carousel', array('elements' => $items)),
+			'#attached' => array(
+				'js' => array(
+					drupal_get_path('module','efq_carousel').'/js/slides/source/slides.jquery.js' => array(
+						'type','file',
+					),
+					drupal_get_path('module','efq_carousel').'/js/attach.js' => array(
+						'type','file',
+					),
+				),
+				'css' => array(
+					drupal_get_path('module', 'efq_carousel').'/css/efq_carousel.css' => array(
+						'type','file',
+					),
+				),
+			),
+		);
+	};
+	return $block;
+}
+
+function fetch_carousel_items() {
+	
+	if ($nid = menu_get_object()->nid) {
+		$query = new EntityFieldQuery;
+		$items = FALSE;
+
+		if ($result = $query
+		  ->entityCondition('entity_type', 'node')
+		  ->entityCondition('bundle', array('carousel'))
+		  ->propertyCondition('status', 1)
+		  ->fieldCondition('field_project','nid',$nid,'=')	  
+		  ->range(0,5)
+		  ->propertyOrderBy('created','DESC')
+		  ->execute()) {
+	
+			if($nodes = $result['node']) {
+				foreach($nodes as $delta=>$value) {
+					if(isset($nodes[$delta]->nid)) {
+						$node = node_load($nodes[$delta]->nid);
+						$items[$delta]['title'] = $node->title;
+						$items[$delta]['text'] = $node->body[$node->language]['0']['safe_value'];
+
+						if(isset($node->field_carousel_photo[$node->language]['0']['fid'])) {
+							$file = file_load($node->field_carousel_photo[$node->language]['0']['fid']);
+						}
+
+						$items[$delta]['photo'] = isset($node->field_carousel_photo[$node->language]['0']['filename']) ? theme('image_style', array('style_name'=>'rotating_features_slideshow','path'=>$file->uri,'title'=>$node->field_carousel_photo[$node->language]['0']['alt'],'attributes'=>array('class'=>array('photo')))) : NULL;
+						$items[$delta]['link'] = isset($node->field_internal_url[$node->language]['0']['url']) ? l(t('Read More >'), $node->field_internal_url[$node->language]['0']['url'], $options = array('attributes'=>array())) : NULL;
+					}
+				}
+			}
+			
+			return $items;
+		}
+
+	}
+	
+	return FALSE; //If this is not a node page we won't be generating a carousel.
+}
+
+function theme_efq_carousel($variables) {
+	$element = $variables['elements'];
+	
+	$path_to_image = drupal_get_path('module', 'efq_carousel').'/css/images/';
+	
+	$output = "<div id='carousel'>";
+	$output .= "<div id='slides'>";
+	$output .= "<div class='slides_container'>";
+	
+	foreach($element as $delta=>$value) {
+		$output .= "<div class='slide'>";
+		$output .= "<div class='slide-content'>";
+		$output .= "<div class='photo-container'>";
+		$output .= $element[$delta]['photo'];
+		$output .= "<div class='slide-text'>";
+		$output .= "<h1>".$element[$delta]['title']."</h1>";
+		$output .= "<p>".$element[$delta]['text'].$element[$delta]['link']."</p>";
+		$output .= "</div>"; //slide-text
+		$output .= "</div>";
+		$output .= "</div>"; //slide-content
+		$output .= "</div>"; //Slide
+	}
+	$output .= "</div>"; //Slides Container
+	$output .= l(theme('image',array('path'=>$path_to_image.'carousel-back-button.png', 'alt'=>t('Carousel Back Button'), 'attributes'=>array('width'=>73, 'height'=>118))), '#', $options = array('html'=>TRUE, 'attributes'=>array('class'=>array('prev'))));
+	$output .= l(theme('image',array('path'=>$path_to_image.'carousel-forward-button.png', 'alt'=>t('Carousel Forward Button'), 'attributes'=>array('width'=>73, 'height'=>118))), '#', $options = array('html'=>TRUE, 'attributes'=>array('class'=>array('next'))));
+	$output .= "</div>"; //Slides
+	$output .= "</div>"; //Carousel
+	return $output;
+}

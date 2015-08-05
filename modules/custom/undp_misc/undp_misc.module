@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * Implements hook_token_info().
+ */
+function undp_misc_token_info() {
+
+  $info['tokens']['node']['project-alias'] = array(
+    'name' => t('Project Alias'),
+    'description' => t('The alias of the project'),
+  );
+
+  return $info;
+
+} // undp_misc_token_info
+
+/**
+ * Implements hook_tokens().
+ */
+function undp_misc_tokens($type, $tokens, array $data = array(), array $options = array()) {
+
+  $replacements = array();
+
+  if ($type == 'node') {
+    foreach ($tokens as $name => $original) {
+      if ($name == 'project-alias') {
+        $node = $data['node'];
+        $project_alias = drupal_lookup_path('alias', 'node/' . $node->field_related_project[$node->language][0]['nid']);
+        $replacements[$original] = $project_alias;
+      } // if
+    } // foreach
+  } // if
+
+  return $replacements;
+
+} // undp_misc_tokens

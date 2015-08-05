@@ -1,0 +1,4 @@
+
+[submodule "libraries/flexslider"]
+	path = libraries/flexslider
+	url = https://github.com/woothemes/FlexSlider.git

@@ -1,0 +1,11 @@
+.partners {
+  > .partner {
+    @include leading-border(1px, 2);
+    @include clearfix;
+  }
+}
+
+.partner-logo {
+  float: left;
+  margin-right: $w-gutter;
+}

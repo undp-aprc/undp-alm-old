@@ -1,0 +1,20 @@
+#footer {
+  background-color: $blue-darker;
+  color: $white;
+  padding: rhythm(2) 0;
+}
+
+#block-boxes-copyright {
+  @include adjust-font-size-to($fs-xxs);
+  float: left;
+  margin-right: $w-gutter;
+}
+
+#footer-nav {
+  .nav-link {
+    @include adjust-font-size-to($fs-xxs);
+    @include link-colors($blue-light, mix($blue-light, $blue-white, 50%));
+    padding: 0 $w-gutter-half;
+  }
+}
+

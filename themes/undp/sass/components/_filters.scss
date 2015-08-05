@@ -1,0 +1,35 @@
+.views-exposed-form {
+  background-color: $blue-white;
+  padding: rhythm(2) $w-gutter-half;
+
+  label {
+    @include adjust-font-size-to($fs-xs);
+  }
+
+  input,
+  select {
+    @include adjust-font-size-to($fs-xs);
+    @include box-sizing(border-box);
+    padding: 1px 4px;
+    max-width: 100%;
+  }
+
+  #autocomplete > ul > li {
+    @include adjust-font-size-to($fs-xs);
+    padding-left: 4px;
+  }
+}
+
+#views-exposed-form-links-landing-page-page {
+  margin-bottom: rhythm(2);
+
+  label,
+  .views-widget {
+    float: left;
+    margin-right: $w-gutter-half;
+  }
+
+  .form-item {
+    margin-bottom: 0;
+  }
+}

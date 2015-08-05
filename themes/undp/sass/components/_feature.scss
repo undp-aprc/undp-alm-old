@@ -1,0 +1,364 @@
+// @file
+// Feature Slideshow styles
+// ----------------------------------------------------------------------------
+
+#block-views-c97538715ae49602b220eacf2d11c084 {
+  padding: rhythm(3) 0 rhythm(2);
+}
+
+.view-rotating-features-slideshow {
+  position: relative;
+
+  > .attachment {
+    z-index: 2;
+    display: none;
+
+    @include breakpoint($col-8) {
+      display: block;
+      position: absolute;
+      width: col-width(3);
+      top: 0;
+      right: 0;
+    }
+
+    @include breakpoint($col-9) {
+      width: col-width(4);
+    }
+  }
+}
+
+.flexslider {
+  background-color: transparent;
+  border: none;
+
+  @include breakpoint($col-8) {
+    // Maintain a consistent height.
+    .slides {
+      li {
+        overflow: hidden;
+
+        > a {
+          text-align: center;
+        }
+      }
+
+      img {
+        max-height: 100%;
+        max-width: none;
+      }
+    }
+  }
+}
+
+#block-views-c97538715ae49602b220eacf2d11c084 .flex-nav-container {
+  float: none;
+
+  margin-bottom: 0;
+
+  @include breakpoint($col-8) {
+    width: col-width(5);
+    height: 360px;
+  }
+
+  @include breakpoint($col-9) {
+    width: col-width(5);
+  }
+
+  @include breakpoint($col-10) {
+    width: col-width(6);
+  }
+
+  @include breakpoint($col-11) {
+    width: col-width(7);
+  }
+
+  @include breakpoint($col-12) {
+    width: col-width(8);
+  }
+}
+
+.flex-caption {
+  @include box-sizing(border-box);
+  background-color: $blue-darker;
+  background-color: rgba($blue-darker, .8);
+  color: $blue-light;
+  // Make room for navigation.
+  padding-left: $w-gutter-half;
+  padding-right: $w-gutter-half;
+  position: relative;
+  width: 100% !important;
+
+  &:before {
+    left: 44px;
+  }
+
+  &:after {
+    right: 44px;
+  }
+
+  > .slide-description {
+    @include adjust-font-size-to(12px);
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  > .slide-title {
+    @include adjust-font-size-to(18px);
+    font-weight: normal;
+    margin: 0;
+
+    @include breakpoint($col-8 $col-10) {
+      @include adjust-font-size-to(16px);
+    }
+  }
+
+  a {
+    @include link-colors($white);
+  }
+
+  @include breakpoint($col-4) {
+    padding-left: 68px !important;
+    padding-right: 68px !important;
+
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      height: 100%;
+      width: 1px;
+      background-color: $blue-dark;
+      position: absolute;
+      top: 0;
+    }
+  }
+
+  @include breakpoint($col-6) {
+    position: absolute;
+  }
+}
+
+.flex-custom-nav {
+  padding: 0;
+  margin: 0;
+}
+
+.flex-custom-nav-item {
+  clear: left;
+  list-style: none;
+  margin: 0;
+
+  a {
+    @include link-colors($blue-lighter, $white);
+  }
+
+  > .slide-image {
+    @include box-sizing(border-box);
+    @include opacity(.6);
+    float: left;
+    height: 71px;
+    width: 92px;
+    overflow: hidden;
+    text-indent: -46px;
+
+    > img {
+      width: auto;
+      height: 92px;
+      max-width: none;
+    }
+
+    &:hover {
+      @include opacity(1);
+    }
+  }
+
+  > .slide-title {
+    margin-left: 112px;
+  }
+
+  &.active {
+    > .slide-image {
+      @include opacity(1);
+      border: 2px solid $white;
+    }
+
+    > .slide-title {
+      margin-left: 112px;
+    }
+
+    a {
+      @include link-colors($white);
+    }
+  }
+}
+
+.flex-direction-nav {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  li {
+    display: block;
+    bottom: 0;
+
+    .prev,
+    .next {
+      background-image: none;
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        top: 50%;
+        margin-top: -9px;
+        left: 50%;
+        margin-left: -9px;
+      }
+    }
+
+    .prev {
+      &:after {
+        @include icon-sprite(arrow-left);
+      }
+    }
+
+    .next {
+      &:after {
+        @include icon-sprite(arrow-right);
+      }
+    }
+  }
+
+  @include breakpoint($col-4) {
+    display: block;
+  }
+}
+
+// Project Gallery
+// ---------------
+
+.field-name-field-project-photos {
+  .flex-caption {
+    display: none;
+  }
+
+  .flex-direction-nav {
+    height: 31px;
+    width: 62px;
+    bottom: 1px;
+
+    li {
+      height: 100%;
+      width: 100%;
+    }
+
+    .prev,
+    .next {
+      height: 30px;
+      width: 30px;
+      border-top: 1px solid $white;
+      border-left: 1px solid $white;
+      background-color: rgba($blue-darker, .8);
+    }
+
+    .prev {
+      left: 0;
+    }
+
+    .next {
+      left: 31px;
+    }
+  }
+}
+
+// Featured Projects
+// -----------------
+#block-views-c97538715ae49602b220eacf2d11c084 .slide-description {
+  > a,
+  > p {
+    display: inline;
+  }
+
+  > a {
+    @include adjust-font-size-to(10px, 1, 12px);
+    font-weight: bold;
+    text-transform: uppercase;
+
+    &:after {
+      @include icon-sprite(arrow-more-white);
+      @include inline-block;
+      content: "";
+      height: 18px;
+      width: 18px;
+      position: relative;
+    }
+  }
+}
+
+#block-views-c97538715ae49602b220eacf2d11c084 .flex-direction-nav {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+
+  li {
+    position: absolute;
+    height: 0;
+    width: 100%;
+    margin-top: 0;
+
+    .prev,
+    .next {
+      width: 44px;
+      height: 91px;
+      margin-top: 0;
+      position: absolute;
+      top: -91px;
+    }
+
+    .prev {
+      left: 0;
+    }
+
+    .next {
+      left: 100%;
+      margin-left: -44px;
+
+      &:after {
+        @include icon-sprite(arrow-right);
+      }
+
+      @include breakpoint($col-8) {
+        left: col-width(5);
+      }
+
+      @include breakpoint($col-9) {
+        left: col-width(5);
+      }
+
+      @include breakpoint($col-10) {
+        left: col-width(6);
+      }
+
+      @include breakpoint($col-11) {
+        left: col-width(7);
+      }
+
+      @include breakpoint($col-12) {
+        left: col-width(8);
+      }
+    }
+  }
+}
+
+// Force show the image when there is only one.
+// This requires selectivizr.js for lte ie8.
+.flexslider ul.slides li:only-child{
+  display: block !important;
+}

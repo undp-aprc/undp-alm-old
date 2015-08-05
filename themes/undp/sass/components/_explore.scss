@@ -1,0 +1,25 @@
+.view-explore {
+  th {
+    @include adjust-font-size-to($fs-xxs);
+    text-transform: uppercase;
+  }
+
+  .views-field-title {
+    font-weight: bold;
+  }
+
+  td.views-field-field-funding-source,
+  td.views-field-field-thematic-area,
+  td.views-field-field-region {
+    @include adjust-font-size-to($fs-xs);
+  }
+}
+
+.leaflet-container {
+  background-color: #07d;
+}
+
+// Hide the leaflet attribution
+.leaflet-control-attribution {
+  display: none;
+}

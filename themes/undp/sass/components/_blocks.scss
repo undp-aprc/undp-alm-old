@@ -1,0 +1,185 @@
+// What We Do block
+// ----------------------
+
+#block-views-what-we-do-block {
+  .attachment {
+    margin-bottom: rhythm(2);
+    @include breakpoint($col-5) {
+      width: col-width(3);
+      float: left;
+    }
+    @include breakpoint($col-6) { width: col-width(4); }
+    @include breakpoint($col-8) { width: col-width(6); }
+    @include breakpoint($col-10) { width: col-width(7); }
+    @include breakpoint($col-11) { width: col-width(8); }
+    @include breakpoint($col-11) { width: col-width(8); }
+  }
+
+  .field-name-field-project-photos,
+  .field-name-field-featured-video {
+    @include breakpoint($col-8) {
+      float: left;
+      width: col-width(3);
+      margin-right: $w-gutter;
+    }
+    @include breakpoint($col-10) { width: col-width(4); }
+  }
+
+  .view-display-id-block > .view-content,
+  .view-display-id-block > .more-link {
+    @include box-sizing(border-box);
+    padding: 0 $w-gutter-half;
+
+    @include breakpoint($col-5) { margin-left: col-width(3); }
+    @include breakpoint($col-6) { margin-left: col-width(4); }
+    @include breakpoint($col-8) { margin-left: col-width(6); }
+    @include breakpoint($col-10) { margin-left: col-width(7); }
+    @include breakpoint($col-11) { margin-left: col-width(8); }
+    @include breakpoint($col-11) { margin-left: col-width(8); }
+  }
+}
+
+// Featured Resource blocks
+// ------------------------
+
+.featured-resources {
+  .view {
+    @include clearfix;
+  }
+
+  views-row {
+    padding-top: rhythm(1);
+  }
+
+  .views-field-field-thumbnail,
+  .video-thumbnail {
+    float: left;
+    margin: rhythm(-1) $w-gutter 0 0;
+
+    img {
+      @include box-shadow($gray-light 1px 1px 2px);
+    }
+  }
+
+  .node-title-featured {
+    padding: rhythm(1, $h3-font-size) $w-gutter;
+    margin: rhythm(2, $h3-font-size) 0 rhythm(1, $h3-font-size);
+    background-color: $blue-white;
+
+    > a {
+      @extend .link-light-blue;
+    }
+  }
+}
+
+.featured-resources {
+  @include breakpoint($col-8) { width: col-width(4); }
+  @include breakpoint($col-10) { width: col-width(5); }
+  @include breakpoint($col-12) { width: col-width(6); }
+}
+
+@include breakpoint($col-8) {
+  #block-views-featured-documents-block { float: left; }
+  #block-views-featured-videos-block { float: right; }
+}
+
+#block-views-featured-videos-block {
+  @include breakpoint($col-9) { width: col-width(5); }
+  @include breakpoint($col-11) { width: col-width(6); }
+}
+
+// Country and Flag block
+// ----------------------
+
+#block-views-country-and-flag-block-block {
+  @include border-top-radius(4px);
+  padding: rhythm(.5) $w-gutter-half;
+  background-color: $blue-darker;
+
+
+  .country-flag {
+    float: left;
+    margin-right: $w-gutter-half;
+    margin-top: rhythm(.5);
+  }
+
+  .country-name {
+    @include adjust-font-size-to(18px);
+    margin: 0;
+
+    > a {
+      @include link-colors($white, $blue-light);
+    }
+  }
+
+  .country-region {
+    @include adjust-font-size-to($fs-s);
+
+    > a  {
+      @include link-colors($blue-light, $blue-lighter);
+    }
+  }
+}
+
+.view-country-and-flag-block {
+  min-height: 54px;
+}
+
+// Project map block
+// ----------------------
+
+#block-undp-map-undp-project-map {
+  .leaflet-container {
+    height: 298px !important;
+  }
+
+  margin-bottom: rhythm(4);
+}
+
+// Project video block
+// ----------------------
+
+#block-views-0b6a47121ffb288176f7c5d6aed66513 {
+  margin-bottom: rhythm(4);
+}
+
+// Partners block
+// ----------------------
+
+#block-views-partners-block-block {
+  text-align: center;
+
+  .views-row {
+    @include leading-border(1px, 2);
+    margin-bottom: rhythm(2);
+    border-color: $gray-lightest;
+    position: relative;
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      top: -2px;
+      display: block;
+      height: 3px;
+      width: 20%;
+    }
+    &:before {
+      @include background-image(linear-gradient(left, white, rgba(white, 0)));
+    }
+    &:after {
+      @include background-image(linear-gradient(right, white, rgba(white, 0)));
+      right: 0;
+    }
+
+    &:first-child {
+      border-color: transparent;
+    }
+  }
+}
+
+// Block Titles
+// ------------
+
+.block-title-collapsed {
+  margin-top: 0;
+}

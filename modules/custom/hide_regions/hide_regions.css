@@ -1,0 +1,11 @@
+.gsp-hide #header,
+.gsp-hide #sidebar-first,
+.gsp-hide #footer,
+.gsp-hide .block.block-undp-map {
+	display:none;
+}
+
+.gsp-hide #main-content {
+	float:none !important;
+	width:100% !important;
+}

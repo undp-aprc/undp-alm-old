@@ -1,0 +1,5 @@
+name = UNDP Blocks
+description = Custom blocks for the UNDP site
+package = ADG
+core = 7.x
+dependencies[] = custom_blocks_base

@@ -1,0 +1,43 @@
+.no-bullets {
+  margin: 0;
+  padding: 0;
+
+  > li {
+    list-style: none;
+  }
+}
+
+.node-list {
+  > li {
+    margin-bottom: rhythm(2);
+  }
+}
+
+.node-list.divided {
+  > li {
+    @include leading-border(1px, 2);
+    border-color: $gray-light;
+  }
+}
+
+
+.view-reports-publications {
+  h3 {
+    @include leading-border(1px, 3, $h3-font-size);
+    border-color: $gray-light;
+    text-transform: uppercase;
+  }
+
+  .node-list {
+    margin-bottom: rhythm(3);
+  }
+}
+
+.list-columns {
+  @include breakpoint($col-7) {
+    @include column-width($w-gutter);
+    @include column-count(2);
+  }
+  @include breakpoint($col-10) { @include column-count(3); }
+  @include breakpoint($col-12) { @include column-count(4); }
+}

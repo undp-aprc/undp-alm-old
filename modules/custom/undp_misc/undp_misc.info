@@ -1,0 +1,5 @@
+name = UNDP Misc
+description = Various customizations
+package = ADG
+core = 7.x
+dependencies[] = token

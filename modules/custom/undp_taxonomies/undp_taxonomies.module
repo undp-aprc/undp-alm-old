@@ -1,0 +1,121 @@
+<?php 
+/**
+ * Implements hook_modules_enabled
+ * 
+ * Adds our actual taxonomy terms when the content_types feature is 
+ * enabled. You may also call this manually by running this in devel/php:
+ * 
+ *  module_invoke('undp_taxonomies', 'modules_enabled', array('content_types'));
+ */
+function undp_taxonomies_modules_enabled($modules) {
+  if (!in_array('content_types', $modules)) { return; }
+  
+  $taxonomies = array(
+    'resource_type' => array(
+      'name' => 'Resource Type',
+      'terms' => array(
+        'Annual Work Plans',
+        'Board Meeting Reports',
+        'Communications Products',
+        'Document',
+        'Knowledge Products',
+        'Link',
+        'PIFs',
+        'ProDocs',
+        'Quarterly Updates',
+        'Training & Tools',
+      ),
+    ),
+    'region_country' => array(
+      'name' => 'Region/Country',
+      'terms' => array()
+    ),
+    'key_collaborators' => array(
+      'name' => 'Key Collaborators',
+      'terms' => array(
+        'Country Office',
+        'Local Governments',
+        'National Governments',
+        'Non-Governmental Organizations',
+        'Private Sector Partners',
+        'UNOPS',
+      ),
+    ),
+    'thematic_areas' => array(
+      'name' => 'Thematic Areas',
+      'terms' => array(
+        'Agriculture/Food Security',
+        'Coastal Zone Development',
+        'Disaster Risk Reduction',
+        'Health',
+        'Infrastructure/Climate Change Risk Management',
+        'Natural Resource Management',
+        'Rural Development',
+        'Water Resources',
+      ),
+    ),
+    'implementing_agency' => array(
+      'name' => 'Implementing Agency & Partnering Organizations',
+      'terms' => array(),
+    ),
+    'funding_source' => array(
+      'name' => 'Funding Source',
+      'terms' => array(
+        'Adaptation Fund',
+        'Bilateral Finance',
+        'Decentralized Cooperation',
+        'GEF-LDCF',
+        'GEF-SCCF',
+        'GEF-Trust Fund',
+      )
+    ),
+    'level_of_intervention' => array(
+      'name' => 'Level of Intervention',
+      'terms' => array(        
+        'Community',
+        'District',
+        'Global',
+        'Municipality',
+        'National',
+        'Regional',
+      )
+    ),
+		'climate_hazards' => array(
+			'name' => 'Climate-related Hazards Addressed',
+			'terms' => array(
+				'Flood',
+ 			 	'Wildfire',
+ 			 	'Sea Level Rise',
+ 			 	'Drought/Water Scarcity',
+ 			 	'Disease'
+			)
+		),
+  );
+  
+  // add these taxonomy vocabs/terms
+  foreach ($taxonomies as $vocabulary => $definition) {
+    $vocab = taxonomy_vocabulary_machine_name_load($vocabulary);
+    
+    if (!isset($vocab->vid) || empty($vocab->vid)) {
+      $vocab = new stdClass();
+      $vocab->name = $definition->name;
+      $vocab->machine_name = $vocabulary;
+      taxonomy_vocabulary_save($vocab); // object passed by reference, so it now has an id
+    } // if
+    
+    foreach ($definition['terms'] as $vocab_term) {
+
+      // determine if the term exists
+      $terms = taxonomy_term_load_multiple(array(), array('name' => $vocab_term, 'vid' => $vocab->vid));
+
+      // if term doesn't exist, create it
+      if (count($terms) == 0) {
+        $term = new stdClass();
+        $term->name = $vocab_term;
+        $term->vid = $vocab->vid;
+        taxonomy_term_save($term);
+      } // if
+
+    } // foreach
+  }
+}

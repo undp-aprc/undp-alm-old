@@ -1,0 +1,43 @@
+.button {
+  @include sassy-button();
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+input.form-submit {
+  @extend .button;
+}
+
+.form-actions {
+  margin: 0;
+  padding: 0 0 1em 0;
+  input.form-submit {
+    margin-right: $w-gutter;
+  }
+}
+
+// Download Button
+.download-link {
+  $sb-base-color: $gray-lightest;
+  $sb-text-color: $gray;
+  $sb-padding: 3px 6px 3px 12px;
+  @include sassy-button();
+  position: relative;
+  font-weight: bold;
+  &:after {
+    @include icon-sprite(arrow-download);
+    @include inline-block;
+    content: "";
+    height: 18px;
+    width: 18px;
+    position: relative;
+    top: -1px;
+  }
+
+  &:hover {
+    text-decoration: none;
+    &:after {
+      @include icon-sprite(arrow-download-hover);
+    }
+  }
+}

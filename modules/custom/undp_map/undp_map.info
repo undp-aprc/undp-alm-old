@@ -1,0 +1,6 @@
+name = UNDP Map
+description = Implement blocks for mapping
+package = ADG
+core = 7.x
+dependencies[] = leaflet
+dependencies[] = custom_blocks_base

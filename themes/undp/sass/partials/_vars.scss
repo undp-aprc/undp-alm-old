@@ -1,0 +1,140 @@
+//
+// @file
+// Variables for use throughout this compass project.
+
+
+//
+// IE Support
+//-----------------------------------------------------------------------------
+
+// Setting this to false will result in smaller output, but no support for ie6 hacks.
+// $legacy-support-for-ie6: true; // Overrides default set in Support partial.
+
+// Setting this to false will result in smaller output, but no support for ie7 hacks.
+// $legacy-support-for-ie7: true; // Overrides default set in Support partial.
+
+
+//  Colors
+//-----------------------------------------------------------------------------
+
+$white:             #ffffff;
+$black:             #000000;
+$black-lighter:     #291511;
+
+$gray-white:        #F0F1F2;
+$gray-lightest:     #E5E5E5;
+$gray-light:        #b3b3b3;
+$gray:              #666;
+$gray-dark:         #444;
+$gray-darker:       #333;
+$gray-darkest:      #182643;
+
+$red:               #b52847;
+$red-dark:          #95223C;
+
+$blue-white:        #f2faff;
+$blue-lighter:      #99ccff;
+$blue-light:        #66c2ff;
+$blue:              #08f;
+$blue-dark:         #05a;
+$blue-darker:       #0a294d;
+
+$primary-color:     $gray;            // Default body copy color
+$secondary-color:   $blue-dark;       // Default link color
+$accent-color:      $gray-dark;       // Default heading color
+$warning-color:     $red;             // Default error and required color
+
+
+//  Typography
+//----------------------------------------------------------------------------------------------------
+
+//  Typefaces
+$primary-typeface:    arial, helvetica, sans-serif;
+$secondary-typeface:  $primary-typeface;
+$tertiary-typeface:   $secondary-typeface;
+$base-font-family:    $primary-typeface;
+
+//  Font sizes
+$fs-xxxs:    10px;
+$fs-xxs:     11px;
+$fs-xs:      12px;
+$fs-s:       13px;
+$fs-m:       14px;
+$fs-l:       16px;
+$fs-xl:      18px;
+$fs-xxl:     24px;
+$fs-xxxl:    30px;
+$fs-xxxxl:   36px;
+$fs-xxxxxl:  40px;
+
+$h1-font-size: $fs-xxxxl !default;
+$h2-font-size: $fs-xxl !default;
+$h3-font-size: $fs-xl !default;
+$h4-font-size: $fs-m !default;
+$h5-font-size: $fs-s !default;
+$h6-font-size: $fs-xs !default;
+
+// The amount lists and blockquotes are indented.
+$indent-amount: 48px !default;
+
+// Vertical Ryhthm
+$base-font-size:    $fs-m;       // Font-size of your body copy.
+$base-line-height:  9px;         // Setting the base-line-height half
+                                 // the height of the desired body copy
+                                 // line-height helps prevent sparse
+                                 // leading at different font-sizes.
+
+
+//  Layout
+//----------------------------------------------------------------------------------------------------
+
+$w-gutter: 24px;
+$w-gutter-half: $w-gutter / 2;
+$w-column: 68px;
+$w-full: 1080px;
+$w-content: 896px;
+$w-sidebar-first: 184px;
+$w-sidebar-second: 344px;
+
+
+//  Breakpoints
+//----------------------------------------------------------------------------------------------------
+
+@function col-width($count) {
+  // Adds up the number of columns plus the gutters in between;
+  @return ($count * $w-column) + (($count - 1) * $w-gutter);
+}
+
+// We're taking an adaptive approach with breakpoints.
+// We'll base our breakpoints off of fixed width columns.
+// Larger screens allow for more columns.
+$col-4: col-width(4) + $w-gutter;
+$col-5: col-width(5) + $w-gutter;
+$col-6: col-width(6) + $w-gutter;
+$col-7: col-width(7) + $w-gutter;
+$col-8: col-width(8) + $w-gutter;
+$col-9: col-width(9) + $w-gutter;
+$col-10: col-width(10) + $w-gutter;
+$col-11: col-width(11) + $w-gutter;
+$col-12: col-width(12) + $w-gutter;
+
+//  Buttons
+//----------------------------------------------------------------------------------------------------
+
+$sb-base-color:      $blue-dark;          // Base color of your button
+$sb-second-color:    false;               // Optional second color of button gradient
+$sb-border-radius:   4px;                 // Button border radius
+$sb-border-width:    1px;                 // Button border width
+$sb-padding:         0.5em 1.5em;         // Button padding
+$sb-font-size:       $fs-xs;               // Button font-size
+$sb-line-height:     $base-line-height;   // Button line-height
+$sb-text-color:      white;               // Button text color
+$sb-text-style:      "inset";             // Button text shadow style
+$sb-gradient-style:  "matte";             // Button gradient style
+$sb-auto-states:     true;                // Automatically create pseudo styles
+
+
+//  CSS3
+//----------------------------------------------------------------------------------------------------
+
+$default-transition-duration: .15s;

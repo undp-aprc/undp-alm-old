@@ -1,0 +1,47 @@
+//
+// @file
+// Styles for the map legend
+//--------------------------
+
+#block-views-map-legend-block {
+  padding: rhythm(2) $w-gutter-half;
+  background-color: $blue-darker;
+
+  > .block-title {
+    margin-top: 0;
+    @include adjust-font-size-to($fs-m);
+    color: $white;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  > .block-content {
+    @include clearfix;
+  }
+}
+
+.legend-item {
+  @include box-sizing(inline-block);
+  float: left;
+
+  > a {
+    @include link-colors($blue-white, $white);
+    @include box-sizing(inline-block);
+    display: block;
+    padding: rhythm(1) $w-gutter;
+    background-position: left center;
+    background-repeat: no-repeat;
+  }
+}
+
+.source-icon {
+  position: relative;
+  top: .35em;
+  margin-right: .2em;
+}
+
+.source-name {
+  @include link-colors($blue-lighter, $white);
+  margin-right: $w-gutter;
+  font-weight: bold;
+}
