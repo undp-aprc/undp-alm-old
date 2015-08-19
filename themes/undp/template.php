@@ -204,6 +204,7 @@ function undp_page_alter(&$page) {
 
 function undp_preprocess_page(&$vars) {
 	drupal_add_library('system', 'ui.accordion');
+    drupal_add_library('system', 'ui.tabs');
   // Remove the main node from the front page.
   if($vars['is_front']) {
     unset($vars['page']['content']['system_main']);
@@ -239,6 +240,10 @@ function undp_preprocess_page(&$vars) {
 
     $vars['title_suffix'][]['#markup'] = '</div>';
   }
+
+    if ($vars['node']->type == 'group_spaces') {
+        $vars['theme_hook_suggestions'][] = 'page__group_spaces';
+    }
 }
 
 /**
@@ -317,4 +322,9 @@ function undp_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'search_block_form') {
     $form['search_block_form']['#attributes']['placeholder'] = "Enter a search term…";
   }
+}
+
+function undp_preprocess_eva_display_entity_view(&$variables)
+{
+    $variables['attributes']['id'][] = 'Hello';
 }
