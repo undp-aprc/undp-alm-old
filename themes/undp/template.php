@@ -241,8 +241,10 @@ function undp_preprocess_page(&$vars) {
     $vars['title_suffix'][]['#markup'] = '</div>';
   }
 
-    if ($vars['node']->type == 'group_spaces') {
-        $vars['theme_hook_suggestions'][] = 'page__group_spaces';
+    if (isset($vars['node'])) {
+        if ($vars['node']->type == 'group_spaces') {
+            $vars['theme_hook_suggestions'][] = 'page__group_spaces';
+        }
     }
 }
 
