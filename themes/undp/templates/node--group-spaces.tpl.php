@@ -140,6 +140,7 @@
               <?php print(render($content['og_resource_blocks_other__french'])); ?>
           </div>
       </div>
+      <div class="logos"><img src="http://www.undp-alm.org/sites/default/files/uploaded-images/nap-training-logos.png" alt="NAP Training Logos" /></div>
   </div>
 
   <?php print render($content['links']); ?>
