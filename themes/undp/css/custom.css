@@ -95,6 +95,21 @@
     padding-bottom:15px;
 }
 
+.view-id-feedback_block {
+    border-bottom:1px solid #ccc;
+}
+
+.view-id-feedback_block ul {
+    list-style:none;
+    padding-left:0;
+}
+
+.view-id-feedback_block ul li {
+    margin-bottom:20px;
+}
+
+
+
 
 
 
